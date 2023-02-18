@@ -1,16 +1,14 @@
 import express from "express";
 import cors from "cors";
+import usersRoutes from "./router/users.routes";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello from express");
-});
 // middlewares
 app.use(cors());
 app.use(express.json());
 
 // routes
-// app.use(postsRoutes);
+app.use(usersRoutes);
 
 export default app;
