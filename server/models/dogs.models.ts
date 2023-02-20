@@ -1,42 +1,42 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../db/db";
 
-// export enum UserRol {
-//   Admin = "Admin",
-//   Owner = "Owner",
-//   Adopter = "Adopter",
-// }
+class Dog extends Model {}
 
-class User extends Model {}
-
-User.init(
+Dog.init(
   {
-    user_id: {
+    dog_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    user_name: {
+    dog_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_lastname: {
+    dog_age: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_email: {
+    dog_weight: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_rol: {
+    dog_description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
     sequelize,
-    modelName: "User",
+    modelName: "Dog",
   }
 );
 
-export default User;
+// Dog.belongsTo(User);
+// User.hasMany(Dog);
+
+// Employees.belongsTo(Sectors, {foreignKey:"sectorId", as:"sector"});
+// Sectors.hasMany(Employees, {as: "employee"})
+
+export default Dog;
