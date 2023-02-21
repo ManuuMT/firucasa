@@ -93,6 +93,7 @@ export const UpdateDog = async (req: any, res: any) => {
   }
 };
 
+// TODO: Fix bug (always returns 204)
 export const DeleteDog = async (req: any, res: any) => {
   const id = req.params.id;
   try {
