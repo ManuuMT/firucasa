@@ -1,28 +1,29 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../db/db";
+import User from "./users.model";
 
 class Dog extends Model {}
 
 Dog.init(
   {
-    dog_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+    id: {
+      type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
-    dog_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    dog_age: {
+    age: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    dog_weight: {
+    weight: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    dog_description: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -33,10 +34,7 @@ Dog.init(
   }
 );
 
-// Dog.belongsTo(User);
-// User.hasMany(Dog);
-
-// Employees.belongsTo(Sectors, {foreignKey:"sectorId", as:"sector"});
-// Sectors.hasMany(Employees, {as: "employee"})
+Dog.belongsTo(User);
+User.hasMany(Dog);
 
 export default Dog;

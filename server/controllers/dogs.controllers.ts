@@ -18,7 +18,7 @@ export const GetSingleDog = async (req: any, res: any) => {
   try {
     const user = await Dog.findOne({
       where: {
-        dog_id: id,
+        id: id,
       },
     });
     res.status(200).json({
@@ -36,10 +36,11 @@ export const CreateDog = async (req: any, res: any) => {
   try {
     await Dog.sync();
     await Dog.create({
-      dog_name: dogData.dog_name,
-      dog_age: dogData.dog_age,
-      dog_weight: dogData.dog_weight,
-      dog_description: dogData.dog_description,
+      name: dogData.name,
+      age: dogData.age,
+      weight: dogData.weight,
+      description: dogData.description,
+      UserId: dogData.UserId,
     });
     res.status(201).json({
       ok: true,
@@ -57,14 +58,14 @@ export const UpdateDog = async (req: any, res: any) => {
   try {
     await Dog.update(
       {
-        dog_name: dogData.dog_name,
-        dog_age: dogData.dog_age,
-        dog_weight: dogData.dog_weight,
-        dog_description: dogData.dog_description,
+        name: dogData.name,
+        age: dogData.age,
+        weight: dogData.weight,
+        description: dogData.description,
       },
       {
         where: {
-          dog_id: id,
+          id: id,
         },
       }
     );
@@ -83,7 +84,7 @@ export const DeleteDog = async (req: any, res: any) => {
   try {
     await Dog.destroy({
       where: {
-        dog_id: id,
+        id: id,
       },
     });
     res.status(204).json({

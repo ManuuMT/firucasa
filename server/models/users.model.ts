@@ -11,24 +11,24 @@ class User extends Model {}
 
 User.init(
   {
-    user_id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
-    user_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_lastname: {
+    lastname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_email: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_rol: {
+    rol: {
       type: DataTypes.STRING,
       allowNull: false,
     },

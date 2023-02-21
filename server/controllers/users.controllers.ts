@@ -18,7 +18,7 @@ export const GetSingleUser = async (req: any, res: any) => {
   try {
     const user = await User.findOne({
       where: {
-        user_id: id,
+        id: id,
       },
     });
     res.status(200).json({
@@ -36,10 +36,10 @@ export const CreateUser = async (req: any, res: any) => {
   try {
     await User.sync();
     await User.create({
-      user_name: userData.user_name,
-      user_lastname: userData.user_lastname,
-      user_email: userData.user_email,
-      user_rol: userData.user_rol,
+      name: userData.name,
+      lastname: userData.lastname,
+      email: userData.email,
+      rol: userData.rol,
     });
     res.status(201).json({
       ok: true,
@@ -57,14 +57,14 @@ export const UpdateUser = async (req: any, res: any) => {
   try {
     await User.update(
       {
-        user_name: userData.user_name,
-        user_lastname: userData.user_lastname,
-        user_email: userData.user_email,
-        user_rol: userData.user_rol,
+        name: userData.name,
+        lastname: userData.lastname,
+        email: userData.email,
+        rol: userData.rol,
       },
       {
         where: {
-          user_id: id,
+          id: id,
         },
       }
     );
@@ -83,7 +83,7 @@ export const DeleteUser = async (req: any, res: any) => {
   try {
     await User.destroy({
       where: {
-        user_id: id,
+        id: id,
       },
     });
     res.status(204).json({
