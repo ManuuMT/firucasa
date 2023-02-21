@@ -27,6 +27,14 @@ Dog.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imageId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,
