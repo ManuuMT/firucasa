@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
           <ul className="flex gap-3">
             {navItems.map((item) => (
               <NavLink to={item.path} key={item.title}>
-                <li className="text-xl text-purple-900 font-semibold">
+                <li className="text-xl text-stone-700 font-semibold">
                   {item.title}
                 </li>
               </NavLink>
