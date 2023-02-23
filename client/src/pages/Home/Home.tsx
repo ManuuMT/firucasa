@@ -1,5 +1,7 @@
+import { Hero } from "../../components";
+
 const Home: React.FC = () => {
-  return <div>Soy el home</div>;
+  return <Hero />;
 };
 
 export default Home;

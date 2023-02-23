@@ -3,13 +3,12 @@ import Navbar from "../components/Navbar/Navbar";
 
 const PublicLayout: React.FC = () => {
   return (
-    <>
-      <Navbar />
-      <main>
+    <div className="absolute bg-white top-0 left-0 w-full h-full">
+      <div className="container mx-auto">
+        <Navbar />
         <Outlet />
-      </main>
-      <footer>Footer</footer>
-    </>
+      </div>
+    </div>
   );
 };
 
