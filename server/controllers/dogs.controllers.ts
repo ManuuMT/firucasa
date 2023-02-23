@@ -49,9 +49,13 @@ export const CreateDog = async (req: any, res: any) => {
 
     await Dog.create({
       name: dogData.name,
-      age: dogData.age,
+      gender: dogData.gender,
+      specie: dogData.specie,
+      ageYears: dogData.ageYears,
+      ageMonths: dogData.ageMonths,
       weight: dogData.weight,
       description: dogData.description,
+      size: dogData.size,
       UserId: dogData.UserId,
       imageId: image?.public_id,
       imageUrl: image?.url,
@@ -73,9 +77,14 @@ export const UpdateDog = async (req: any, res: any) => {
     await Dog.update(
       {
         name: dogData.name,
-        age: dogData.age,
+        gender: dogData.gender,
+        specie: dogData.specie,
+        ageYears: dogData.ageYears,
+        ageMonths: dogData.ageMonths,
         weight: dogData.weight,
         description: dogData.description,
+        size: dogData.size,
+        UserId: dogData.UserId,
       },
       {
         where: {

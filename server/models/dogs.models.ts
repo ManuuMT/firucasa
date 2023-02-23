@@ -15,15 +15,31 @@ Dog.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
+    gender: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    specie: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    ageYears: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    ageMonths: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     weight: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    size: {
       type: DataTypes.STRING,
       allowNull: false,
     },
