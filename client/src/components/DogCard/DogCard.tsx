@@ -1,12 +1,19 @@
 import { Dog } from "../../models";
+import { useNavigate } from "react-router-dom";
 
 interface DogCardProps {
   data: Dog;
 }
 
 const DogCard: React.FC<DogCardProps> = (props) => {
+  // * States
+  const navigate = useNavigate();
+
   return (
-    <div className="w-48 shadow-xl bg-white rounded-3xl justify-self-center overflow-hidden hover:cursor-pointer hover:scale-110 transition-all duration-300">
+    <div
+      className="w-48 shadow-xl bg-white rounded-3xl justify-self-center overflow-hidden hover:cursor-pointer hover:scale-110 transition-all duration-300"
+      onClick={() => navigate(`/adoptions/${props.data.id}`)}
+    >
       <div>
         <img src={props.data.imageUrl} alt={props.data.name} />
       </div>
