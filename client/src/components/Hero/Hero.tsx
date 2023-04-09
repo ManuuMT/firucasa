@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import BoyWithDog from "../../assets/img/BoyWithDog.png";
 import IconDog from "../../assets/img/IconDog.png";
-import { FaHeart } from "react-icons/fa";
 
 const Hero: React.FC = () => {
   return (

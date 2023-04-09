@@ -18,16 +18,23 @@ const Adoptions: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center bg-slate-300 mt-20 py-5 rounded-3xl shadow-md">
-      <div className="w-3/4 flex flex-col">
+    <div className="w-full flex bg-slate-300 mt-20 py-5 rounded-3xl shadow-md">
+      <div className="w-full flex flex-col">
         <div className="flex items-center mb-4">
           <MdLocationPin className="w-8 h-8 text-neutral-800" />
           <h3 className="text-neutral-800 font-bold">
             Mar del Plata, Argentina
           </h3>
         </div>
-        <div className="grid grid-cols-4">
-          {dogs && dogs.map((dog) => <DogCard data={dog} key={dog.id} />)}
+        <div className="w-full flex">
+          <div className="w-1/3" />
+          <div className="w-2/3 flex">
+            <div className="w-2/3 grid grid-cols-2 gap-4 relative">
+              {dogs?.map((dog) => (
+                <DogCard data={dog} key={dog.id} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
