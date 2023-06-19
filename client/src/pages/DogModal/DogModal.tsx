@@ -1,13 +1,13 @@
 import { Dog } from "../../models";
 import IconDog from "../../assets/img/IconDog.png";
 
-interface DogInfoProps {
+interface DogModalProps {
   data: Dog;
   isOpen: (open: boolean) => void;
   age: string;
 }
 
-const DogInfo: React.FC<DogInfoProps> = (props) => {
+const DogModal: React.FC<DogModalProps> = (props) => {
   // * Methods
 
   return (
@@ -57,4 +57,4 @@ const DogInfo: React.FC<DogInfoProps> = (props) => {
   );
 };
 
-export default DogInfo;
+export default DogModal;

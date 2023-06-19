@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dog } from "../../models";
-import { DogInfo } from "../../pages";
+import { DogModal } from "../../pages";
 
 interface DogCardProps {
   data: Dog;
@@ -24,10 +24,10 @@ const DogCard: React.FC<DogCardProps> = (props) => {
   return (
     <>
       {openModal && (
-        <DogInfo isOpen={setOpenModal} data={props.data} age={AgeBuilder()} />
+        <DogModal isOpen={setOpenModal} data={props.data} age={AgeBuilder()} />
       )}
       <div
-        className="w-48 shadow-xl bg-white rounded-3xl justify-self-center overflow-hidden hover:cursor-pointer hover:scale-110 transition-all duration-300"
+        className="w-48 shadow-xl bg-white rounded-3xl justify-self-center overflow-hidden hover:cursor-pointer hover:scale-110 transition-all duration-300 "
         onClick={() => setOpenModal(true)}
       >
         <div>

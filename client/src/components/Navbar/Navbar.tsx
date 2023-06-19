@@ -26,7 +26,7 @@ const navItems: NavItems[] = [
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="w-full fixed top-0 left-0 h-16 flex justify-center">
+    <nav className="w-full fixed top-0 left-0 h-16 flex justify-center bg-slate-50 z-10">
       <div className="container relative flex items-center justify-between">
         <div
           className="absolute top-16"
