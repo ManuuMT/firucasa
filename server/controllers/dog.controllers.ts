@@ -6,8 +6,6 @@ import { UploadedFile } from "express-fileupload";
 import { Image } from "../models/Dog.model";
 
 export const GetDog = async (req: Request, res: Response) => {
-    const caca = "1";
-
     const id = Number(req.params.id);
     try {
         const dog = await Dog.findOneBy({ id });
@@ -37,44 +35,41 @@ export const GetAllDogs = async (req: Request, res: Response) => {
 
 export const CreateDog = async (req: Request, res: Response) => {
     try {
-        const {
-            name,
-            shelterId,
-            description,
-            gender,
-            specie,
-            ageYears,
-            ageMonths,
-            weight,
-            size
-            // photos,
-        } = req.body;
+        const { name, shelterId } = req.body;
 
-        let image: Image | null = null;
+        let images: Image[] = [];
 
+        // Upload images if there are any
         if (req.files?.image) {
-            const result = await uploadImage(
-                (req.files.image as UploadedFile).tempFilePath
-            );
-            await fs.remove((req.files.image as UploadedFile).tempFilePath);
-            image = {
-                url: result.secure_url,
-                public_id: result.public_id
-            };
-        }
-        const newDog = new Dog();
+            // If there are multiple images
+            if (req.files.image instanceof Array) {
+                for (const image of req.files.image) {
+                    const result = await uploadImage(image.tempFilePath);
+                    const newImage = {
+                        url: result.secure_url,
+                        public_id: result.public_id
+                    };
+                    images.push(newImage);
 
+                    await fs.remove(image.tempFilePath);
+                }
+            } else {
+                // If there is only one image
+                const image = req.files.image as UploadedFile;
+                const result = await uploadImage(image.tempFilePath);
+                const newImage = {
+                    url: result.secure_url,
+                    public_id: result.public_id
+                };
+                images.push(newImage);
+                await fs.remove(image.tempFilePath);
+            }
+        }
+
+        const newDog = new Dog();
         newDog.name = name;
         newDog.shelter = shelterId;
-
-        // newDog.description = description;
-        // newDog.gender = gender;
-        // newDog.specie = specie;
-        // newDog.ageYears = ageYears;
-        // newDog.ageMonths = ageMonths;
-        // newDog.weight = weight;
-        // newDog.size = size;
-        newDog.photo = image;
+        newDog.photos = images;
 
         await newDog.save();
 

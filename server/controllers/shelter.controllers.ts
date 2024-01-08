@@ -1,8 +1,6 @@
 import { Dog, Shelter } from "../entities";
 import { Request, Response } from "express";
 
-const name = "asd";
-
 export const GetShelter = async (req: Request, res: Response) => {
     const id = Number(req.params.id);
     try {
@@ -27,10 +25,10 @@ export const GetAllShelters = async (req: Request, res: Response) => {
     try {
         const shelters = await Shelter.find();
         const sheltersWithDogs = await Promise.allSettled(
-            shelters.map(async (shelter) => {
+            shelters.map(async shelter => {
                 const dogs = await Dog.createQueryBuilder("dog")
                     .where("dog.shelterId = :shelterId", {
-                        shelterId: shelter.id,
+                        shelterId: shelter.id
                     })
                     .getMany();
                 return { ...shelter, dogs: dogs || [] };
@@ -70,7 +68,7 @@ export const UpdateShelter = async (req: Request, res: Response) => {
 
     if (!shelter) {
         return res.status(404).json({
-            message: "Refugio no encontrado",
+            message: "Refugio no encontrado"
         });
     }
 
