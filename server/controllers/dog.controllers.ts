@@ -35,9 +35,18 @@ export const GetAllDogs = async (req: Request, res: Response) => {
 
 export const CreateDog = async (req: Request, res: Response) => {
     try {
-        const { name, shelterId } = req.body;
+        const {
+            name,
+            shelterId,
+            gender,
+            size,
+            ageYears,
+            ageMonths,
+            weight,
+            description
+        } = req.body;
 
-        let images: Image[] = [];
+        let imagesArray: Image[] = [];
 
         // Upload images if there are any
         if (req.files?.image) {
@@ -49,8 +58,7 @@ export const CreateDog = async (req: Request, res: Response) => {
                         url: result.secure_url,
                         public_id: result.public_id
                     };
-                    images.push(newImage);
-
+                    imagesArray.push(newImage);
                     await fs.remove(image.tempFilePath);
                 }
             } else {
@@ -61,15 +69,23 @@ export const CreateDog = async (req: Request, res: Response) => {
                     url: result.secure_url,
                     public_id: result.public_id
                 };
-                images.push(newImage);
+
+                imagesArray.push(newImage);
                 await fs.remove(image.tempFilePath);
             }
         }
+        console.log("QUE ES imagesArray: ", imagesArray);
 
         const newDog = new Dog();
         newDog.name = name;
         newDog.shelter = shelterId;
-        newDog.photos = images;
+        newDog.photos = imagesArray;
+        newDog.gender = gender;
+        newDog.size = size;
+        newDog.ageYears = ageYears;
+        newDog.ageMonths = ageMonths;
+        newDog.weight = weight;
+        newDog.description = description;
 
         await newDog.save();
 

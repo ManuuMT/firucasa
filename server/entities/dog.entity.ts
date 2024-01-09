@@ -30,19 +30,19 @@ export class Dog extends BaseEntity {
     })
     size: DogSize;
 
-    @Column()
-    ageYears: number;
+    @Column({ nullable: true })
+    ageYears?: number;
 
-    @Column()
-    ageMonths: number;
+    @Column({ nullable: true })
+    ageMonths?: number;
 
-    @Column()
-    weight: number;
+    @Column({ nullable: true })
+    weight?: number;
 
     @Column()
     description: string;
 
-    @Column("jsonb", { array: true, default: [] })
+    @Column("jsonb", { default: [] })
     photos: Image[];
 
     @CreateDateColumn()
