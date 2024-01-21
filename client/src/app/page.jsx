@@ -15,7 +15,7 @@ export default function Home() {
               Dale una oportunidad a un perro sin hogar...
             </p>
             <Link href="/adopciones">
-              <button className="flex items-center gap-2 bg-purple-600 text-white hover:bg-purple-700 transition-all duration-300 w-fit px-5 py-2 rounded-lg">
+              <button className="flex items-center gap-2 bg-primary text-white hover:bg-purple-800 transition-all duration-300 w-fit px-5 py-2 rounded-lg">
                 ¡Ver adopciones! <img src={IconDog.src} className="w-7 h-5" />
               </button>
             </Link>

@@ -36,11 +36,13 @@ export default function Navbar() {
       <nav className="flex items-center justify-between">
         <div className="flex items-center">
           <div className="w-[100] h-16">
-            <img
-              src={Logo.src}
-              alt="Firucasa"
-              className="w-full h-full object-contain"
-            />
+            <Link href="/">
+              <img
+                src={Logo.src}
+                alt="Firucasa"
+                className="w-full h-full object-contain"
+              />
+            </Link>
           </div>
           <div>
             {items.map((item) => (
