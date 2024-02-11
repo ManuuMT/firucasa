@@ -24,8 +24,21 @@ export const GetDog = async (req: Request, res: Response) => {
 
 export const GetAllDogs = async (req: Request, res: Response) => {
     try {
-        const dogs = await Dog.find();
-        res.status(200).json(dogs);
+        const page = Number(req.query.page) || 1;
+        const limit = 2;
+
+        const dogs = await Dog.find({
+            take: limit,
+            skip: (page - 1) * limit
+        });
+
+        const response = {
+            currentCursor: page,
+            nextCursor: page + 1,
+            results: dogs
+        };
+
+        res.status(200).json(response);
     } catch (error) {
         if (error instanceof Error) {
             res.status(500).json({ message: error.message });
