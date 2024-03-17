@@ -24,17 +24,36 @@ export const GetDog = async (req: Request, res: Response) => {
 
 export const GetAllDogs = async (req: Request, res: Response) => {
     try {
+        // Set page and limit
         const page = Number(req.query.page) || 1;
         const limit = 2;
 
-        const dogs = await Dog.find({
+        // Set options related to pagination
+        const options: any = {
             take: limit,
             skip: (page - 1) * limit
-        });
+        };
+
+        let filters: any = {};
+
+        // Add filters to query
+        if (req.body.gender) {
+            filters.where = { gender: req.body.gender };
+        }
+
+        // Count total results with that filters
+        const totalResults = await Dog.count(filters);
+
+        // Now add page and limit to filters
+        filters = { ...filters, ...options };
+
+        // Get page results
+        const dogs = await Dog.find(filters);
 
         const response = {
-            currentCursor: page,
-            nextCursor: page + 1,
+            page,
+            totalResults,
+            hasNextPage: page * limit <= totalResults,
             results: dogs
         };
 
@@ -87,7 +106,7 @@ export const CreateDog = async (req: Request, res: Response) => {
                 await fs.remove(image.tempFilePath);
             }
         }
-        console.log("QUE ES imagesArray: ", imagesArray);
+        // console.log("imagesArray --> ", imagesArray);
 
         const newDog = new Dog();
         newDog.name = name;

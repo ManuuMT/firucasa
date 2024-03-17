@@ -1,15 +1,15 @@
 import { Router } from "express";
 import {
-  GetAllDogs,
-  GetDog,
-  CreateDog,
-  UpdateDog,
-  DeleteDog,
+    GetAllDogs,
+    GetDog,
+    CreateDog,
+    UpdateDog,
+    DeleteDog
 } from "../controllers/dog.controllers";
 
 const router = Router();
 
-router.get("/dogs", GetAllDogs);
+router.post("/get-dogs", GetAllDogs);
 // router.get("/dogs/:id", GetDog);
 router.post("/dogs", CreateDog);
 // router.put("/dogs/:id", UpdateDog);
