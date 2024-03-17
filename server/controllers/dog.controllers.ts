@@ -53,7 +53,7 @@ export const GetAllDogs = async (req: Request, res: Response) => {
         const response = {
             page,
             totalResults,
-            hasNextPage: page * limit <= totalResults,
+            hasNextPage: page * limit < totalResults,
             results: dogs
         };
 

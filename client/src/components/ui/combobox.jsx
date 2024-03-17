@@ -18,7 +18,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function Combobox({ data, selectText, noResultsText, searchText }) {
+export function Combobox({
+  data,
+  selectText,
+  noResultsText,
+  searchText,
+  setChanges,
+}) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -51,6 +57,7 @@ export function Combobox({ data, selectText, noResultsText, searchText }) {
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
+                  setChanges(currentValue);
                 }}
               >
                 <Check
