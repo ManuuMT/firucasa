@@ -34,11 +34,15 @@ export const GetAllDogs = async (req: Request, res: Response) => {
             skip: (page - 1) * limit
         };
 
-        let filters: any = {};
+        let filters: any = { where: {} };
 
         // Add filters to query
         if (req.body.gender) {
-            filters.where = { gender: req.body.gender };
+            filters.where.gender = req.body.gender;
+        }
+
+        if (req.body.size) {
+            filters.where.size = req.body.size;
         }
 
         // Count total results with that filters

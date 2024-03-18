@@ -30,5 +30,6 @@ module.exports = {
   rules: {
     'no-unused-vars': 'warn',
     'comma-dangle': ['error', 'always-multiline'],
+    'react/prop-types': 'warn',
   },
 };
