@@ -18,6 +18,11 @@ export const gendersObj = {
   hembra: 'FEMALE',
 };
 
+export const dogGender = {
+  MALE: 'Macho',
+  FEMALE: 'Hembra',
+};
+
 export const dogSize = [
   {
     label: 'Pequeno',

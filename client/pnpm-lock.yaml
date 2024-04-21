@@ -94,6 +94,9 @@ devDependencies:
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
+  prop-types:
+    specifier: ^15.8.1
+    version: 15.8.1
   tailwindcss:
     specifier: ^3.3.0
     version: 3.4.1
