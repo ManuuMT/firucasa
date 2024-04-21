@@ -12,7 +12,7 @@ export default function Filters() {
   const { filters, setFilters } = useContext(FiltersContext);
 
   return (
-    <aside className='w-[30%] bg-slate-900 h-full rounded-xl flex flex-col shadow-md'>
+    <aside className='w-[20%] bg-card h-fit rounded-xl flex flex-col shadow-md'>
       <div className='w-full flex justify-center'>
         <h1 className='text-2xl font-semibold text-center my-5 flex items-center gap-2'>
           <LuSettings2 />

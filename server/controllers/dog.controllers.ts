@@ -1,4 +1,4 @@
-import { Dog } from "../entities";
+import { Dog, Shelter } from "../entities";
 import { Request, Response } from "express";
 import { uploadImage } from "../libs/cloudinary";
 import fs from "fs-extra";
@@ -52,7 +52,7 @@ export const GetAllDogs = async (req: Request, res: Response) => {
         filters = { ...filters, ...options };
 
         // Get page results
-        const dogs = await Dog.find(filters);
+        const dogs = await Dog.find({ ...filters, relations: ["shelter"] });
 
         const response = {
             page,

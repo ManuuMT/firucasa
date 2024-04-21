@@ -14,7 +14,7 @@ export default function DogItem({ dog }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className='w-[280px] rounded-lg bg-secondary overflow-hidden cursor-pointer shadow-md hover:scale-105 transition duration-300 ease-in-out'>
+        <div className='w-[280px] bg-card rounded-lg overflow-hidden cursor-pointer shadow-md hover:scale-105 transition duration-300 ease-in-out'>
           <DogCard dog={dog} />
         </div>
       </DialogTrigger>
@@ -51,6 +51,7 @@ export default function DogItem({ dog }) {
               </div>
               <p className='text-2xl'>{dog.description}</p>
               {/* Shelter info */}
+              {dog.shelter.name}
             </div>
           </div>
         </DialogHeader>
@@ -66,5 +67,8 @@ DogItem.propTypes = {
     gender: PropTypes.string.isRequired,
     description: PropTypes.string,
     photos: PropTypes.array,
+    shelter: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
   }).isRequired,
 };

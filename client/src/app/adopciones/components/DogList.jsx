@@ -23,7 +23,7 @@ export default function DogList() {
       {isLoading && <p>Cargando...</p>}
       {!isLoading && isError && <p>Error al cargar los datos</p>}
       {!isLoading && !isError && (
-        <div className='w-[70%] h-full rounded-xl'>
+        <div className='w-[80%] h-full rounded-xl'>
           {/* Results */}
           <div className='w-full'>
             <h1 className='text-lg font-semibold'>{HandleResults()}</h1>
@@ -50,7 +50,7 @@ export default function DogList() {
                 <button
                   onClick={() => setPage(pre => Math.max(pre - 1, 1))}
                   disabled={page === 1}
-                  className='bg-slate-900 text-white px-4 py-2 rounded-md'
+                  className='bg-card text-foreground px-4 py-2 rounded-md'
                 >
                   {`<-- Anterior`}
                 </button>
@@ -59,7 +59,7 @@ export default function DogList() {
                     setPage(pre => (data?.hasNextPage ? pre + 1 : pre));
                   }}
                   disabled={isPlaceholderData || !data?.hasNextPage}
-                  className='bg-slate-900 text-white px-4 py-2 rounded-md'
+                  className='bg-card text-foreground px-4 py-2 rounded-md'
                 >
                   {`Siguiente -->`}
                 </button>

@@ -11,7 +11,7 @@ const items = [
     id: 1,
   },
   {
-    href: '#',
+    href: 'adopciones',
     text: 'Adopciones',
     id: 2,
   },
@@ -32,7 +32,7 @@ export default function Navbar() {
     <header className='w-full px-24 py-8 text-xl font-semibold'>
       <nav className='flex items-center justify-between'>
         <div className='flex items-center'>
-          <div className='w-[100] h-16'>
+          <div className='w-[100] h-12'>
             <Link href='/'>
               <img
                 src={Logo.src}
