@@ -4,7 +4,7 @@ import IconDog from '../assets/img/IconDog.png';
 
 export default function Home() {
   return (
-    <main className='min-h-screen'>
+    <main className='container'>
       <div className='h-full flex justify-center items-center'>
         <div className='flex justify-center w-[50%]'>
           <div className='flex flex-col w-[60%] gap-4 font-semibold'>

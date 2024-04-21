@@ -29,10 +29,10 @@ const items = [
 
 export default function Navbar() {
   return (
-    <header className='w-full px-24 py-8 text-xl font-semibold'>
-      <nav className='flex items-center justify-between'>
-        <div className='flex items-center'>
-          <div className='w-[100] h-12'>
+    <header className='w-full px-24 py-8 text-xl font-semibold sticky z-10 top-0 shadow-md bg-card'>
+      <nav className='flex items-center justify-between container'>
+        <div className='flex items-center gap-20'>
+          <div className='w-[100] h-10'>
             <Link href='/'>
               <img
                 src={Logo.src}
@@ -43,7 +43,11 @@ export default function Navbar() {
           </div>
           <div>
             {items.map(item => (
-              <Link key={item.id} href={item.href} className='px-2'>
+              <Link
+                key={item.id}
+                href={item.href}
+                className='px-5 hover:text-primary transition-colors '
+              >
                 {item.text}
               </Link>
             ))}
