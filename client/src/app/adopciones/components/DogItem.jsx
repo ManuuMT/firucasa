@@ -48,6 +48,11 @@ export default function DogItem({ dog }) {
                 <p className='w-fit text-red-700 rounded-xl px-2 bg-red-300'>
                   {dogGender[dog.gender]}
                 </p>
+                {dog.weight && (
+                  <p className='w-fit text-primary rounded-xl px-2 bg-lime-300'>
+                    {`${dog.weight} kg`}
+                  </p>
+                )}
               </div>
               <p className='text-2xl'>{dog.description}</p>
               {/* Shelter info */}
@@ -67,6 +72,7 @@ DogItem.propTypes = {
     gender: PropTypes.string.isRequired,
     description: PropTypes.string,
     photos: PropTypes.array,
+    weight: PropTypes.number,
     shelter: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }),

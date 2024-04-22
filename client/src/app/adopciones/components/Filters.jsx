@@ -6,7 +6,14 @@ import { TiLocation } from 'react-icons/ti';
 import { LuSettings2 } from 'react-icons/lu';
 import { ComboboxShadcn } from '@/components/ui/comboboxShadcn';
 import FiltersContext from '@/context/filtersContext';
-import { dogSize, dogSizeObj, genders, gendersObj } from '@/models/dog.model';
+import {
+  animal,
+  animalObj,
+  dogSize,
+  dogSizeObj,
+  genders,
+  gendersObj,
+} from '@/models/dog.model';
 
 export default function Filters() {
   const { filters, setFilters } = useContext(FiltersContext);
@@ -27,6 +34,19 @@ export default function Filters() {
           <TiLocation />
           Galicia
         </Badge>
+
+        <ComboboxShadcn
+          data={animal}
+          selectText='Mascota'
+          noResultsText='No hay resultados encontrados'
+          searchText='Buscar...'
+          setChanges={value => {
+            value === 'Todos'
+              ? setFilters({ ...filters, animal: '' })
+              : setFilters({ ...filters, animal: animalObj[value] });
+          }}
+        />
+
         <ComboboxShadcn
           data={genders}
           selectText='Género'
@@ -38,6 +58,7 @@ export default function Filters() {
               : setFilters({ ...filters, gender: gendersObj[value] });
           }}
         />
+
         <ComboboxShadcn
           data={dogSize}
           selectText='Tamaño'

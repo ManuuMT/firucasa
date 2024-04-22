@@ -47,3 +47,23 @@ export const dogSizeObj = {
   mediano: 'MEDIUM',
   grande: 'LARGE',
 };
+
+export const animal = [
+  {
+    label: 'Perros',
+    value: 'Perros',
+  },
+  {
+    label: 'Gatos',
+    value: 'Gatos',
+  },
+  {
+    value: 'Todos',
+    label: 'Todos',
+  },
+];
+
+export const animalObj = {
+  perros: 'DOG',
+  gatos: 'CAT',
+};

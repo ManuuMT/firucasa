@@ -34,7 +34,7 @@ export default function DogList() {
               {/* Title */}
               <div className='w-full flex justify-center'>
                 <h1 className='text-2xl font-semibold text-center my-5'>
-                  Listado de perros
+                  ¡Adóptanos!
                 </h1>
               </div>
 
