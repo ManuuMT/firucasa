@@ -3,7 +3,7 @@ import {
   useQueryClient,
   keepPreviousData,
 } from '@tanstack/react-query';
-import getDogs from '@/services/getDogs';
+import getDogs from '@/services/dogs/getDogs';
 import { useContext, useEffect } from 'react';
 import FiltersContext from '@/context/filtersContext';
 

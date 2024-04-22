@@ -1,34 +1,44 @@
 import {
-  BaseEntity,
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+    BaseEntity,
+    Column,
+    CreateDateColumn,
+    Entity,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
 } from "typeorm";
 import { Dog } from "./dog.entity";
+import { Image } from "../models/Dog.model";
 
 @Entity()
 export class Shelter extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column()
-  name: string;
+    @Column()
+    name: string;
 
-  @Column()
-  description: string;
+    @Column()
+    description: string;
 
-  @Column()
-  location: string;
+    @Column({ nullable: false, default: "" })
+    country: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
+    @Column({ nullable: false, default: "" })
+    province: string;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+    @Column({ nullable: false, default: "" })
+    city: string;
 
-  @OneToMany(() => Dog, (dog) => dog.shelter)
-  dogs: Dog[];
+    @Column("jsonb", { default: { public_id: "", url: "" } })
+    logo: Image;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+
+    @OneToMany(() => Dog, dog => dog.shelter)
+    dogs: Dog[];
 }

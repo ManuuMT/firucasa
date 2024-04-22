@@ -16,14 +16,19 @@ const items = [
     id: 2,
   },
   {
-    href: '#',
-    text: 'FAQ',
+    href: 'hogares',
+    text: 'Hogares',
     id: 3,
   },
   {
     href: '#',
-    text: 'Contacto',
+    text: 'FAQ',
     id: 4,
+  },
+  {
+    href: '#',
+    text: 'Contacto',
+    id: 5,
   },
 ];
 

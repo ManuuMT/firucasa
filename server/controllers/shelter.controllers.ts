@@ -1,5 +1,9 @@
+import { UploadedFile } from "express-fileupload";
 import { Dog, Shelter } from "../entities";
 import { Request, Response } from "express";
+import { uploadImage } from "../libs/cloudinary";
+import { Image } from "../models/Dog.model";
+import fs from "fs-extra";
 
 export const GetShelter = async (req: Request, res: Response) => {
     const id = Number(req.params.id);
@@ -23,19 +27,45 @@ export const GetShelter = async (req: Request, res: Response) => {
 
 export const GetAllShelters = async (req: Request, res: Response) => {
     try {
-        const shelters = await Shelter.find();
-        const sheltersWithDogs = await Promise.allSettled(
-            shelters.map(async shelter => {
-                const dogs = await Dog.createQueryBuilder("dog")
-                    .where("dog.shelterId = :shelterId", {
-                        shelterId: shelter.id
-                    })
-                    .getMany();
-                return { ...shelter, dogs: dogs || [] };
-            })
-        );
+        const page = Number(req.query.page) || 1;
+        const limit = 10;
 
-        res.status(200).json(sheltersWithDogs);
+        // Set options related to pagination
+        const options: any = {
+            take: limit,
+            skip: (page - 1) * limit
+        };
+
+        let filters: any = { where: {} };
+
+        // Count total results with that filters
+        const totalResults = await Shelter.count();
+
+        // Now add page and limit to filters
+        filters = { ...filters, ...options };
+
+        // Get page results
+        const shelters = await Shelter.find(filters);
+
+        const response = {
+            page,
+            totalResults,
+            hasNextPage: page * limit < totalResults,
+            results: shelters
+        };
+
+        // const sheltersWithDogs = await Promise.allSettled(
+        //     shelters.map(async shelter => {
+        //         const dogs = await Dog.createQueryBuilder("dog")
+        //             .where("dog.shelterId = :shelterId", {
+        //                 shelterId: shelter.id
+        //             })
+        //             .getMany();
+        //         return { ...shelter, dogs: dogs || [] };
+        //     })
+        // );
+
+        res.status(200).json(response);
     } catch (error) {
         if (error instanceof Error) {
             res.status(500).json({ message: error.message });
@@ -45,12 +75,31 @@ export const GetAllShelters = async (req: Request, res: Response) => {
 
 export const CreateShelter = async (req: Request, res: Response) => {
     try {
-        const { name, description, location } = req.body;
+        const { name, description, country, province, city } = req.body;
+
+        let logo: Image = { url: "", public_id: "" };
+        // Upload images if there are any
+        if (req.files?.image) {
+            // If there is only one image
+            const image = req.files.image as UploadedFile;
+            const result = await uploadImage(image.tempFilePath);
+            const newImage = {
+                url: result.secure_url,
+                public_id: result.public_id
+            };
+
+            logo = newImage;
+            await fs.remove(image.tempFilePath);
+        }
 
         const shelter = new Shelter();
         shelter.name = name;
         shelter.description = description;
-        shelter.location = location;
+        shelter.country = country;
+        shelter.province = province;
+        shelter.city = city;
+        shelter.city = city;
+        shelter.logo = logo;
 
         await shelter.save();
 
