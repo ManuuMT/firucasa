@@ -58,7 +58,13 @@ export default function Navbar() {
             ))}
           </div>
         </div>
-        <div>
+
+        <div className='flex gap-4 items-center'>
+          <Link href='/ingresar'>
+            <button className='bg-primary text-white hover:bg-purple-800 transition-all duration-300 w-fit px-5 py-2 rounded-lg'>
+              Ingresar
+            </button>
+          </Link>
           <ThemeToggle />
         </div>
       </nav>
