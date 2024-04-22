@@ -4,7 +4,7 @@ import shelterRoutes from "./router/shelter.routes";
 import dogRoutes from "./router/dog.routes";
 import morgan from "morgan";
 import fileupload from "express-fileupload";
-import { dirname, join } from "path";
+// import { dirname, join } from "path";
 
 const app = express();
 // const __dirname = dirname(__filename);
@@ -14,10 +14,10 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(
-  fileupload({
-    useTempFiles: true,
-    tempFileDir: "./upload",
-  })
+    fileupload({
+        useTempFiles: true,
+        tempFileDir: "./upload"
+    })
 );
 
 // routes

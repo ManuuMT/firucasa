@@ -45,6 +45,10 @@ export const GetAllDogs = async (req: Request, res: Response) => {
             filters.where.size = req.body.size;
         }
 
+        if (req.body.animal) {
+            filters.where.animal = req.body.animal;
+        }
+
         // Count total results with that filters
         const totalResults = await Dog.count(filters);
 
@@ -79,7 +83,9 @@ export const CreateDog = async (req: Request, res: Response) => {
             ageYears,
             ageMonths,
             weight,
-            description
+            description,
+            breed,
+            animal
         } = req.body;
 
         let imagesArray: Image[] = [];
@@ -122,6 +128,8 @@ export const CreateDog = async (req: Request, res: Response) => {
         newDog.ageMonths = ageMonths;
         newDog.weight = weight;
         newDog.description = description;
+        newDog.breed = breed;
+        newDog.animal = animal;
 
         await newDog.save();
 

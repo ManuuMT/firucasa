@@ -8,12 +8,20 @@ import {
     BaseEntity
 } from "typeorm";
 import { Shelter } from "./shelter.entity";
-import { DogGender, DogSize, Image } from "../models/Dog.model";
+import { DogGender, DogSize, Image, Animals } from "../models/Dog.model";
 
 @Entity()
 export class Dog extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column({
+        type: "enum",
+        enum: Animals,
+        nullable: false,
+        default: Animals.DOG
+    })
+    animal?: Animals;
 
     @Column()
     name: string;
@@ -41,6 +49,9 @@ export class Dog extends BaseEntity {
 
     @Column()
     description: string;
+
+    @Column({ nullable: true, default: null })
+    breed?: string;
 
     @Column("jsonb", { default: [] })
     photos: Image[];
