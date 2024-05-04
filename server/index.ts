@@ -1,6 +1,5 @@
 import { PORT } from "./config";
 import app from "./app";
-import "reflect-metadata";
 import { AppDataSource } from "./db/db";
 
 async function main() {

@@ -56,6 +56,9 @@ export class Dog extends BaseEntity {
     @Column("jsonb", { default: [] })
     photos: Image[];
 
+    @Column({ nullable: true, default: false })
+    isAdopted: boolean;
+
     @CreateDateColumn()
     createdAt: Date;
 

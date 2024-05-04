@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
-import shelterRoutes from "./router/shelter.routes";
-import dogRoutes from "./router/dog.routes";
+import { dogRoutes, shelterRoutes, userRoutes } from "./router";
 import morgan from "morgan";
 import fileupload from "express-fileupload";
 // import { dirname, join } from "path";
@@ -23,6 +22,7 @@ app.use(
 // routes
 app.use(shelterRoutes);
 app.use(dogRoutes);
+app.use(userRoutes);
 
 // serve static files
 // app.use(express.static(join(__dirname, "../client/dist")));

@@ -39,9 +39,9 @@ export default function DogItem({ dog }) {
             <div className='flex flex-col gap-2 font-semibold'>
               {/* Dog info */}
               <div className='text-4xl'>{dog.name}</div>
-              <div className='flex flex-wrap gap-2 text-xl'>
+              <div className='flex flex-wrap gap-2 text-base'>
                 {dog.ageYears > 0 && (
-                  <p className='w-fit text-primary rounded-xl px-2 bg-purple-300'>
+                  <p className='w-fit text-purple-700 rounded-xl px-2 bg-purple-300'>
                     {`${dog.ageYears} ${dog.ageYears === 1 ? 'año' : 'años'}`}
                   </p>
                 )}
@@ -49,7 +49,7 @@ export default function DogItem({ dog }) {
                   {dogGender[dog.gender]}
                 </p>
                 {dog.weight && (
-                  <p className='w-fit text-primary rounded-xl px-2 bg-lime-300'>
+                  <p className='w-fit text-lime-700 rounded-xl px-2 bg-lime-300'>
                     {`${dog.weight} kg`}
                   </p>
                 )}

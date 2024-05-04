@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Dog } from "./dog.entity";
 import { Image } from "../models/Dog.model";
+import { User } from "./user.entity";
 
 @Entity()
 export class Shelter extends BaseEntity {
@@ -41,4 +42,7 @@ export class Shelter extends BaseEntity {
 
     @OneToMany(() => Dog, dog => dog.shelter)
     dogs: Dog[];
+
+    @OneToMany(() => User, user => user.shelter, { nullable: true })
+    users?: User[];
 }
