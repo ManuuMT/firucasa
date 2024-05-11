@@ -1,7 +1,3 @@
 export default function AdminPage() {
-  return (
-    <main className='container h-screen flex justify-center items-center'>
-      Admin
-    </main>
-  );
+  return <main className='w-full flex justify-center items-center'>Admin</main>;
 }

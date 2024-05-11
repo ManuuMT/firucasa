@@ -24,8 +24,10 @@ export default function RootLayout({ children }) {
               enableSystem
               disableTransitionOnChange
             >
-              <Navbar />
-              {children}
+              <div className='min-h-screen'>
+                <Navbar />
+                <div className='container mx-auto'>{children}</div>
+              </div>
             </ThemeProvider>
           </Provider>
         </FiltersProvider>

@@ -34,7 +34,7 @@ const items = [
 
 export default function Navbar() {
   return (
-    <header className='w-full px-24 py-8 text-xl font-semibold sticky z-10 top-0 shadow-md bg-card'>
+    <header className='w-full px-24 py-7 text-xl font-semibold sticky z-10 top-0 shadow-md bg-card'>
       <nav className='flex items-center justify-between container'>
         <div className='flex items-center gap-20'>
           <div className='w-[100] h-10'>

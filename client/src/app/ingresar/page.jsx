@@ -35,56 +35,54 @@ export default function LoginPage() {
   };
 
   return (
-    <main className='container h-screen'>
-      <div className='h-full flex justify-center items-center'>
-        <div className='bg-card w-fit h-fit flex justify-center items-center rounded-md py-14 px-14'>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-              <h1 className='text-5xl'>Ingresar</h1>
-              <p className='text-xl mb-4'>
-                Inicia sesión para administrar tu refugio.
-              </p>
-              <FormField
-                control={form.control}
-                name='email'
-                render={({ field }) => (
-                  <FormItem>
-                    {/* <FormLabel>Correo</FormLabel> */}
-                    <FormControl>
-                      <Input
-                        type='email'
-                        placeholder='Correo electrónico'
-                        {...field}
-                      />
-                    </FormControl>
+    <main className='flex justify-center mt-10'>
+      <div className='bg-card w-fit h-fit flex justify-center items-center rounded-md py-14 px-14'>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+            <h1 className='text-5xl'>Ingresar</h1>
+            <p className='text-xl mb-4'>
+              Inicia sesión para administrar tu refugio.
+            </p>
+            <FormField
+              control={form.control}
+              name='email'
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Correo</FormLabel> */}
+                  <FormControl>
+                    <Input
+                      type='email'
+                      placeholder='Correo electrónico'
+                      {...field}
+                    />
+                  </FormControl>
 
-                    {/* <FormDescription>
+                  {/* <FormDescription>
                       This is your public display name.
                     </FormDescription> */}
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='password'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type='password'
-                        placeholder='Contraseña'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type='submit'>Ingresar</Button>
-            </form>
-          </Form>
-        </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='password'
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      type='password'
+                      placeholder='Contraseña'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type='submit'>Ingresar</Button>
+          </form>
+        </Form>
       </div>
     </main>
   );
