@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import { createAccessToken } from "../libs/jwt";
 
-export const CreateUser = async (req: Request, res: Response) => {
+export const RegisterUser = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
 
@@ -43,6 +43,7 @@ export const Login = async (req: Request, res: Response) => {
 
         res.cookie("token", token);
         return res.json({
+            id: userFound.id,
             email: userFound.email
         });
     } catch (error) {
@@ -50,4 +51,23 @@ export const Login = async (req: Request, res: Response) => {
             return res.status(500).json({ message: error.message });
         }
     }
+};
+
+export const Logout = async (req: Request, res: Response) => {
+    try {
+        res.cookie("token", "", { expires: new Date(0) });
+        return res.json({ message: "Logout exitoso" });
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.status(500).json({ message: error.message });
+        }
+    }
+};
+
+export const Profile = async (req: Request, res: Response) => {
+    const { user } = req.body;
+    const userFound = await User.findOneBy({ id: user.id });
+    if (!userFound)
+        return res.status(404).json({ message: "Usuario no encontrado" });
+    return res.json({ id: userFound.id, email: userFound.email });
 };

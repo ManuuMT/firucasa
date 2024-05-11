@@ -3,6 +3,7 @@ import cors from "cors";
 import { dogRoutes, shelterRoutes, userRoutes } from "./router";
 import morgan from "morgan";
 import fileupload from "express-fileupload";
+import cookieParser from "cookie-parser";
 // import { dirname, join } from "path";
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(
         tempFileDir: "./upload"
     })
 );
+app.use(cookieParser());
 
 // routes
 app.use(shelterRoutes);
