@@ -13,8 +13,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import login from '@/services/users/login';
+import { useRouter } from 'next/navigation';
+import { toastHandler } from '@/utils/toastHandler';
+import UserContext from '@/context/userContext';
+import { useContext } from 'react';
 
 export default function LoginPage() {
+  // * Hooks
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -22,16 +27,17 @@ export default function LoginPage() {
       password: '',
     },
   });
+  const router = useRouter();
+  const { setUser } = useContext(UserContext);
 
+  // * Methods
   const onSubmit = async values => {
     const res = await login(values);
     if (res?.status === 200) {
-      // Redirect to dashboard
-      console.log('Redirect to dashboard');
-    } else {
-      // Show error message
-      console.log(res);
-    }
+      toastHandler('Login exitoso', 'success');
+      setUser(res.data);
+      router.push('/admin');
+    } else toastHandler(res, 'error');
   };
 
   return (

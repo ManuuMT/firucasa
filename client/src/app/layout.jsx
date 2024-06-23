@@ -2,8 +2,10 @@ import { Dosis } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components';
-import Provider from '@/utils/Providers';
+import QueryProvider from '@/utils/Providers';
 import { FiltersProvider } from '@/context/filtersContext';
+import { Toaster } from 'react-hot-toast';
+import { UserProvider } from '@/context/userContext';
 
 const dosis = Dosis({ subsets: ['latin'] });
 
@@ -16,21 +18,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang='es' suppressHydrationWarning>
       <body className={dosis.className}>
-        <FiltersProvider>
-          <Provider>
-            <ThemeProvider
-              attribute='class'
-              defaultTheme='light'
-              enableSystem
-              disableTransitionOnChange
-            >
-              <div className='min-h-screen'>
-                <Navbar />
-                <div className='container mx-auto'>{children}</div>
-              </div>
-            </ThemeProvider>
-          </Provider>
-        </FiltersProvider>
+        <UserProvider>
+          <FiltersProvider>
+            <QueryProvider>
+              <ThemeProvider
+                attribute='class'
+                defaultTheme='light'
+                enableSystem
+                // disableTransitionOnChange
+              >
+                <div className='min-h-screen'>
+                  <Navbar />
+                  <div className='container mx-auto'>{children}</div>
+                </div>
+              </ThemeProvider>
+            </QueryProvider>
+          </FiltersProvider>
+        </UserProvider>
+        <Toaster />
       </body>
     </html>
   );
