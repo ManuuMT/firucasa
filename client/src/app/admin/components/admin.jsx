@@ -1,16 +1,25 @@
 'use client';
 
-import UserContext from '@/context/userContext';
-import { useContext } from 'react';
+import { useUser } from '@/context/userContext';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Admin() {
   // * Hooks
-  const { user } = useContext(UserContext);
-  console.log(user);
+  const { user, isLoading } = useUser();
+  const router = useRouter();
+
+  // * Life Cycle
+  useEffect(() => {
+    if (!user) {
+      router.push('/ingresar');
+    }
+  });
 
   return (
     <main className='w-full flex justify-center items-center'>
-      {user.email}
+      {isLoading && 'Cargando...'}
+      {!isLoading && user && user.email}
     </main>
   );
 }

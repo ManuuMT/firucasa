@@ -6,6 +6,7 @@ import QueryProvider from '@/utils/Providers';
 import { FiltersProvider } from '@/context/filtersContext';
 import { Toaster } from 'react-hot-toast';
 import { UserProvider } from '@/context/userContext';
+import PropTypes from 'prop-types';
 
 const dosis = Dosis({ subsets: ['latin'] });
 
@@ -40,3 +41,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node,
+};
